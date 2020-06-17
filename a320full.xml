@@ -1,0 +1,208 @@
+<blink button="30"></blink>
+
+
+<datetime            sim="true"
+		              os="" 
+		         offset1="60" 
+		         offset2="-60"
+		             h24="true"
+		    hour_dataref="sim/cockpit2/clock_timer/local_time_hours"
+		  minute_dataref="sim/cockpit2/clock_timer/local_time_minutes"
+		   month_dataref="sim/cockpit2/clock_timer/current_month"
+		     day_dataref="sim/cockpit2/clock_timer/current_day">
+</datetime>
+
+<mfd>
+	<set>
+		<set button_cycle_up="194" button_cycle_down="195">
+
+			<page line1="FFA320 Ultimate" 
+				line2="Active   "
+				line3="               ">
+				<variable           dataref="sim/cockpit/radios/com1_freq_hz"       row="3" pos="1"  format="%3.2f" multiplier="0.01"></variable>
+			</page>
+
+			<page line1="      Com2     " 
+				line2="Active"
+				line3="               ">
+				<variable           dataref="sim/cockpit/radios/com2_freq_hz"       row="3" pos="1"  format="%3.2f" multiplier="0.01"></variable>
+			</page>
+
+			<page line1="      Nav1     " 
+				line2="Active"
+				line3="               ">
+				<variable           dataref="sim/cockpit/radios/nav1_freq_hz"       row="3" pos="1"  format="%3.2f" multiplier="0.01"></variable>
+			</page>
+
+			<page line1="      Nav2" 
+				line2="Active   Stdby "
+				line3="               ">
+				<variable           dataref="sim/cockpit/radios/nav2_freq_hz"       row="3" pos="1"  format="%3.2f" multiplier="0.01"></variable>
+			</page>
+
+			<page line1="  Transponder  " 
+				line2="               "
+				line3="               ">
+				<variable           dataref="sim/cockpit/radios/transponder_code" row="2" pos="6"  format="%4.0f" multiplier="1"></variable>
+			</page>
+
+			<page line1="Vis:    Rain:  %" 
+				  line2="Strm:  %Turb:  %"
+				  line3="Bar:            ">
+				  <variable dataref="sim/weather/visibility_reported_m"                           row="1" pos="5"  format="%3.0f" multiplier="0.01"></variable>
+				  <variable dataref="sim/weather/rain_percent"                                    row="1" pos="14" format="%2.0f" multiplier="100"> </variable>
+				  <variable dataref="sim/weather/thunderstorm_percent"                            row="2" pos="6"  format="%2.0f" multiplier="100"> </variable>
+				  <variable dataref="sim/weather/wind_turbulence_percent"                         row="2" pos="14" format="%2.0f" multiplier="100"> </variable>
+				  <variable dataref="sim/weather/barometer_current_inhg"                          row="3" pos="5"  format="%2.2f" multiplier="1">   </variable>
+				  <variable dataref="sim/cockpit2/gauges/actuators/barometer_setting_in_hg_pilot" row="3" pos="11" format="%2.2f" multiplier="1">   </variable>
+			</page>			
+		</set>
+	</set>
+</mfd>
+
+
+
+<indicators>
+    <!-- *************************** A320 Fire Button for Parking Beake. Red when brake is on  ******************************* -->
+	<led id="fire">
+		<state light="green" dataref="sim/cockpit2/controls/parking_brake_ratio" op="--0.5">
+			<state light="red" dataref="sim/cockpit2/controls/parking_brake_ratio" op="++0.5">
+			</state>
+		</state>        
+	</led>
+    <!-- *************************** A On Green when Exped pressed otherwise amber ******************************* -->
+	<led id="a">
+		<state light="green" dataref="a320/Aircraft/Cockpit/Panel/FCU_ExpediteLight/State" op="++0.5"> </state>
+        <state light="amber" dataref="a320/Aircraft/Cockpit/Panel/FCU_ExpediteLight/State" op="--0.5"> </state>
+	</led>
+    <!-- *************************** B Green when approach selected otherwise amber ******************************* -->
+	<led id="b">
+		<state light="green" dataref="a320/Aircraft/Cockpit/Panel/FCU_ApproachLight/State" op="++0.5"> </state>
+        <state light="amber" dataref="a320/Aircraft/Cockpit/Panel/FCU_ApproachLight/State" op="--0.5"> </state>
+	</led>
+    <!-- *************************** D Red Reverse Thrust engaged. Green Forward Thrust  ******************************* -->
+	<led id="d">
+		<state light="green" dataref="model/controls/engine_reverse1" op="--0.001">
+			<state light="red_sym_medium" dataref="model/controls/engine_reverse1" op="++0.1">
+			</state>
+		</state>
+	</led>
+    <!-- *************************** On with battery  ******************************* -->
+	<led id="e">
+		<state light="green" dataref="sim/cockpit/electrical/battery_on" op="++0.5">
+		</state>
+	</led>
+    <!-- *************************** XXXXXX A320 No Action so far XXXX  ******************************* -->
+	<led id="t1">
+	</led>	
+    <!-- *************************** Red=Speedbrake deployed Amber  Green to do  ******************************* -->
+	<led id="t2">
+		<state light="red" dataref="sim/flightmodel2/controls/speedbrake_ratio" op="--1.1">
+			<state light="amber" dataref="sim/flightmodel2/controls/speedbrake_ratio" op="--0.8">
+				<state light="green" dataref="sim/flightmodel2/controls/speedbrake_ratio" op="--0.1">
+				</state>
+			</state>
+		</state>
+	</led>
+    <!-- *************************** Flaps - Off for no faps - Amber flaps - Full flaps Green   ******************************* -->
+	<led id="t3">
+		<state light="green" dataref="sim/flightmodel2/controls/flap_handle_deploy_ratio" op="--1.1">
+			<state light="amber" dataref="sim/flightmodel2/controls/flap_handle_deploy_ratio" op="--0.8">
+				<state light="off" dataref="sim/flightmodel2/controls/flap_handle_deploy_ratio" op="==0">
+				</state>
+			</state>
+		</state>
+	</led>
+    <!-- *************************** Green when autopilot 1 engaged  ******************************* -->
+	<led id="pov">
+		<state light="green" dataref="a320/Aircraft/Cockpit/Panel/FCU_AutoPilotLight1/State" op="++0.5">
+			<state light="amber" dataref="a320/Aircraft/Cockpit/Panel/FCU_AutoPilotLight1/State" op="--0.4">
+						</state>
+		</state>
+	</led>
+    <!-- *************************** A320 Battery On  ******************************* -->
+	<led id="clutch">
+		<state light="amber" dataref="sim/cockpit/electrical/battery_on" op="++0"> </state>
+	</led>
+    <!-- **********************  If battery is on Sets the Throttle lights to Green/Red    ******************* -->
+	<led id="throttle">        
+        <state light="on" dataref="sim/cockpit/electrical/battery_on" op="++0">   </state>  
+	</led>
+
+</indicators>
+
+<sequences>
+	<sequence name="red_sym_medium"      pattern="r "              speed="8" ></sequence>
+	<sequence name="green_outer_marker"  pattern="ggg  "           speed="11"></sequence>
+	<sequence name="amber_middle_marker" pattern="a aa  "          speed="9" ></sequence>
+	<sequence name="red_inner_marker"    pattern="r "              speed="8" ></sequence>
+	<sequence name="amber_dbl_short"     pattern="a  a           " speed="17"></sequence>
+</sequences>
+
+<custom_commands> 
+	<custom_command name="LandingLights</indicators>">
+		<command name="a320/Overhead/LightLandL_switch+"> </command>
+		<command name="a320/Overhead/LightLandR_switch+"> </command> 
+	</custom_command>
+</custom_commands>
+
+<!-- Comment -->
+
+<assignments clear_all="false">   
+    <!-- *************************** Joystick Trigger - Brake Regular and Max for Taxi  ******************************* -->
+    <button nr="160" command="sim/flight_controls/brakes_regular" type="trigger_pos" command_type="begin"></button>
+    <button nr="160" command="sim/flight_controls/brakes_regular" type="trigger_neg" command_type="end"></button> 
+    <button nr="174" command="sim/flight_controls/brakes_max" type="trigger_pos" command_type="begin"></button>
+    <button nr="174" command="sim/flight_controls/brakes_max" type="trigger_neg" command_type="end"></button>
+    
+    <!-- *************************** Joystick Parking Brake Joystick Fire  ******************************* -->
+    <button nr="161"  command="sim/flight_controls/brakes_toggle_max"> </button> <!-- Fire -->
+    
+    <!-- *************************** Joystick Various  ******************************* -->
+    <button nr="164"  command="sim/flight_controls/landing_gear_toggle" > </button>  <!-- Button C -->
+	<button nr="170"  command="sim/flight_controls/speed_brakes_up_one" >  </button> <!-- Button T3 -->
+	<button nr="171"  command="sim/flight_controls/speed_brakes_down_one" > </button> <!-- Button T4 -->
+	<button nr="172"  command="sim/flight_controls/flaps_up" >  </button> <!-- Button T5 -->
+	<button nr="173"  command="sim/flight_controls/flaps_down" > </button> <!-- Button T6 -->
+
+    <!-- *************************** Joystick Top Left Hat Switch  ******************************* -->
+	<button nr="179"  command="a320/Panel/FCU_Altitude_switch+" type="repeater" repeat_speed="20" repeat_pause="0.8">  </button>
+	<button nr="182"  command="a320/Panel/FCU_Lateral_switch-" type="repeater" repeat_speed="20" repeat_pause="0.8"> </button>
+	<button nr="180"  command="a320/Panel/FCU_Lateral_switch+" type="repeater" repeat_speed="20" repeat_pause="0.8"> </button>
+    <button nr="181"  command="a320/Panel/FCU_Altitude_switch-" type="repeater" repeat_speed="20" repeat_pause="0.8"> </button>
+    
+    <!-- *************************** JoyStick Buttons for AutoPilot  ******************************* -->       
+    <button nr="165" dataref="a320/Panel/FCU_AutoPilot1"   type="hold" on="1" off="0"> </button> <!-- Button Pinkie -->
+    <button nr="162" dataref="a320/Panel/FCU_Expedite"     type="hold" on="1" off="0"> </button> <!-- Button A -->
+    <button nr="163" dataref="a320/Panel/FCU_Approach"     type="hold" on="1" off="0"> </button> <!-- Button B -->
+    
+   <!--  -->
+    <!-- *************************** Throttle Top Back Hat Switch  ******************************* -->    
+    <button nr="183"  command="a320/Panel/FCU_Speed_switch-" type="repeater" repeat_speed="20" repeat_pause="0.8"> </button>
+	<button nr="185"  command="a320/Panel/FCU_Speed_switch+" type="repeater" repeat_speed="20" repeat_pause="0.8"> </button> 
+<!-- No idea why these commands do not work as similaer ones do. -->
+<!-- They seem to crash the speed system if used here. -->
+<!-- Workaround it to assign thrm by yhe X-plane Joystick system -->    
+<!--    <button nr="184"  command="a320/Panel/FCU_SpeedMode_switch_pull"  command_type="begin" type="trigger_pos"> </button> -->  
+<!--    <button nr="186"  command="a320/Panel/FCU_SpeedMode_switch_push"  command_type="begin" type="trigger_pos"> </button> -->
+
+
+    <!-- *************************** D Throttle Reverse Thrust    ******************************* -->   
+    <button nr="166"  command="sim/engines/thrust_reverse_toggle" >  </button> <!-- Button D -->
+    
+    
+    <!-- ************************* i For Airport Navigator Plug in    ******************************* -->  
+    <!-- Uncomment if you have this plugin
+    <button nr="190"  command="pikitanga/AptNav/ToggleMap">	</button>
+    <button nr="167"  custom_command="LandingLights">	</button> -->
+</assignments>£
+
+
+
+
+
+
+
+
+
+

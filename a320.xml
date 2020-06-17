@@ -1,0 +1,52 @@
+<blink button="30"></blink>
+
+
+<datetime            sim="true"
+		              os="" 
+		         offset1="60" 
+		         offset2="-60"
+		             h24="true"
+		    hour_dataref="sim/cockpit2/clock_timer/local_time_hours"
+		  minute_dataref="sim/cockpit2/clock_timer/local_time_minutes"
+		   month_dataref="sim/cockpit2/clock_timer/current_month"
+		     day_dataref="sim/cockpit2/clock_timer/current_day">
+</datetime>
+
+<mfd>
+	<set>
+
+
+			<page line1="FF A320 Minimal " 
+				line2="Success Now try"
+				line3="other profiles">
+
+			</page>				
+		</set>
+</mfd>
+
+
+<indicators>
+
+    <!-- *************************** XXXXXX A320 Throttle quadrant lights on with battery XXXX  ******************************* -->
+	<led id="throttle">
+        <state light="on" dataref="sim/cockpit/electrical/battery_on" op="++0">   </state>     
+	</led>
+
+</indicators>
+
+
+<assignments clear_all="false">   
+
+    
+ 
+</assignments>
+
+
+
+
+
+
+
+
+
+
