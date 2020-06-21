@@ -18,7 +18,7 @@
 
 			<page line1="FFA320 Ultimate" 
 				line2="Active   "
-				line3="               ">
+				line3="Ver1.1">
 				<variable           dataref="sim/cockpit/radios/com1_freq_hz"       row="3" pos="1"  format="%3.2f" multiplier="0.01"></variable>
 			</page>
 
@@ -180,11 +180,8 @@
     <!-- *************************** Throttle Top Back Hat Switch  ******************************* -->    
     <button nr="183"  command="a320/Panel/FCU_Speed_switch-" type="repeater" repeat_speed="20" repeat_pause="0.8"> </button>
 	<button nr="185"  command="a320/Panel/FCU_Speed_switch+" type="repeater" repeat_speed="20" repeat_pause="0.8"> </button> 
-<!-- No idea why these commands do not work as similaer ones do. -->
-<!-- They seem to crash the speed system if used here. -->
-<!-- Workaround it to assign thrm by yhe X-plane Joystick system -->    
-<!--    <button nr="184"  command="a320/Panel/FCU_SpeedMode_switch_pull"  command_type="begin" type="trigger_pos"> </button> -->  
-<!--    <button nr="186"  command="a320/Panel/FCU_SpeedMode_switch_push"  command_type="begin" type="trigger_pos"> </button> -->
+    <button nr="184"  dataref="a320/Panel/FCU_SpeedMode" type="hold" on="1" off="0"> </button>
+    <button nr="186"  dataref="a320/Panel/FCU_SpeedMode"  type="hold" on="-1" off="0"> </button>
 
 
     <!-- *************************** D Throttle Reverse Thrust    ******************************* -->   
