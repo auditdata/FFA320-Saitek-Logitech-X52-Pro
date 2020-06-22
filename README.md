@@ -11,7 +11,7 @@ Prerequisites
 Desktop/X-Plane 11/Aircraft/Extra Aircraft/FlightFactor A320 ultimate/data
 This exposes the internal FF A320 datarefs for AP-1, Expedite and Approach panel lights to illuminate joystick LEDs appropriately.
 
-4. Move the file a320.xml from this repository which contains the absolute minimum to confirm the FFA320 and X52 are talking to each other. It should be placed in X-Plane 11\Resources\plugins\FlyWithLua\Scripts\My_x52LuaOut_definitions along with the default.xml already created by x52LuaOut
+4. Move the file a320.xml from this repository which contains the absolute minimum to confirm the FFA320 and X52 are talking to each other. It should be placed in X-Plane 11\Resources\plugins\FlyWithLua\Scripts\My_x52LuaOut_definitions along with the default.xml already created by x52LuaOut. As noted in the X52LuaOut documentation you need to make sure you have an empty joystick configuration in X-plane as the a320.xml will now control the button assignments. Make sure the button assignemnts in X-plane show "Do Nothing" for Btn 0 onwards.
 
 5. Load X-plane and choose the FF A320. When it has completed loading the MFD may show an error or may not. If it does the reason is the A320 datarefs are not available when FlywithLua loads the script. To get around this, once the A320 is loaded go to the menu item "Plugins>FlyWithLua>Reload all Lua script files" This will then clear the failed to load error.
 
