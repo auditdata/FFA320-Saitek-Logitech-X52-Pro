@@ -18,7 +18,7 @@
 		<set button_cycle_up="194" button_cycle_down="195">
 
 			<page line1="FFA320 Ultimate" 
-				line2="16/07/2020"
+				line2="21/07/2020"
 				line3="               ">
 				<variable           dataref="sim/cockpit/radios/com1_freq_hz"       row="3" pos="1"  format="%3.2f" multiplier="0.01"></variable>
 			</page>
