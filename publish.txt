@@ -1,3 +1,7 @@
 a320/Aircraft/Cockpit/Panel/FCU_AutoPilotLight1/State
 a320/Aircraft/Cockpit/Panel/FCU_ApproachLight/State
 a320/Aircraft/Cockpit/Panel/FCU_ExpediteLight/State
+a320/Panel/FCU_AutoPilot1
+a320/Panel/FCU_Expedite
+a320/Panel/FCU_Approach
+a320/Panel/FCU_SpeedMode
