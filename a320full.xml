@@ -189,11 +189,7 @@
     <!-- *************************** D Throttle Reverse Thrust    ******************************* -->   
     <button nr="166"  command="sim/engines/thrust_reverse_toggle" >  </button> <!-- Button D -->
     
-    
-    <!-- ************************* i For Airport Navigator Plug in    ******************************* -->  
-    
-    <button nr="190"  command="pikitanga/AptNav/ToggleMap">	</button>
-    <button nr="167"  custom_command="LandingLights">	</button>
+
 </assignments>
 
 
