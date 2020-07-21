@@ -16,9 +16,9 @@ This exposes the internal FF A320 datarefs for AP-1, Expedite and Approach panel
 5. Load X-plane and choose the FF A320.
 
 6. Confirm the MFD now shows 
-FF A320 Minimal 
+"FF A320 Minimal 
 Success Now try
-other profiles
+other profiles"
 
 7. If the MFD shows as above it is now time to remove the a320.xml file and replace it with a320full.xml and rename it a320.xml. Reload X-plane and the FFA320
 
