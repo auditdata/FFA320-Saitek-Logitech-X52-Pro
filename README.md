@@ -9,7 +9,7 @@ Prerequisites
 
 3. Place the file in this repository publish.txt in the data folder of the FF A320 eg 
 Desktop/X-Plane 11/Aircraft/Extra Aircraft/FlightFactor A320 ultimate/data
-This exposes the internal FF A320 datarefs for AP-1, Expedite and Approach panel lights to illuminate joystick LEDs appropriately.
+This exposes the internal FF A320 datarefs for AP-1, Expedite and Approach panel lights etc to illuminate joystick LEDs appropriately.
 
 4. Move the file a320.xml from this repository which contains the absolute minimum to confirm the FFA320 and X52 are talking to each other. It should be placed in X-Plane 11\Resources\plugins\FlyWithLua\Scripts\My_x52LuaOut_definitions along with the default.xml already created by x52LuaOut. As noted in the X52LuaOut documentation you need to make sure you have an empty joystick configuration in X-plane as the a320.xml will now control the button assignments. Make sure the button assignemnts in X-plane show "Do Nothing" for Btn 0 onwards.
 
