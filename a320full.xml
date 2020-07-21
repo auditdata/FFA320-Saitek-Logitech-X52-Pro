@@ -1,5 +1,6 @@
 <blink button="30"></blink>
-
+<greeter on="1" duration="1" line1="Start" line2="2" line3="3"></greeter>
+<wait_dataref name="a320/Aircraft/Cockpit/Panel/FCU_AutoPilotLight1/State"> </wait_dataref>
 
 <datetime            sim="true"
 		              os="" 
@@ -17,8 +18,8 @@
 		<set button_cycle_up="194" button_cycle_down="195">
 
 			<page line1="FFA320 Ultimate" 
-				line2="Active   "
-				line3="Ver1.1">
+				line2="16/07/2020"
+				line3="               ">
 				<variable           dataref="sim/cockpit/radios/com1_freq_hz"       row="3" pos="1"  format="%3.2f" multiplier="0.01"></variable>
 			</page>
 
@@ -180,8 +181,15 @@
     <!-- *************************** Throttle Top Back Hat Switch  ******************************* -->    
     <button nr="183"  command="a320/Panel/FCU_Speed_switch-" type="repeater" repeat_speed="20" repeat_pause="0.8"> </button>
 	<button nr="185"  command="a320/Panel/FCU_Speed_switch+" type="repeater" repeat_speed="20" repeat_pause="0.8"> </button> 
+<!-- No idea why these commands do not work as similaer ones do. -->
+<!-- They seem to crash the speed system if used here. -->
+<!-- Workaround it to assign thrm by yhe X-plane Joystick system -->    
+<!--    <button nr="184"  command="a320/Panel/FCU_SpeedMode_switch_pull"  command_type="begin" type="trigger_pos"> </button> -->  
+<!--    <button nr="186"  command="a320/Panel/FCU_SpeedMode_switch_push"  command_type="begin" type="trigger_pos"> </button> -->
+
     <button nr="184"  dataref="a320/Panel/FCU_SpeedMode" type="hold" on="1" off="0"> </button>
     <button nr="186"  dataref="a320/Panel/FCU_SpeedMode"  type="hold" on="-1" off="0"> </button>
+
 
 
     <!-- *************************** D Throttle Reverse Thrust    ******************************* -->   
@@ -189,10 +197,10 @@
     
     
     <!-- ************************* i For Airport Navigator Plug in    ******************************* -->  
-    <!-- Uncomment if you have this plugin
+    
     <button nr="190"  command="pikitanga/AptNav/ToggleMap">	</button>
-    <button nr="167"  custom_command="LandingLights">	</button> -->
-</assignments>£
+    <button nr="167"  custom_command="LandingLights">	</button>
+</assignments>
 
 
 
